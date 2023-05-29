@@ -20,11 +20,6 @@ const totalMintPrice = useMemo(() => {
     return ethers.utils.formatEther(totalMintPriceInt);
   }, [priceToMint, quantity]);
 
-	const { connect } = useConnect({
-		connector: new InjectedConnector(),
-	  })
-	  const { disconnect } = useDisconnect()
-
     const { config: prepareConfig, error: prepareError} = usePrepareContractWrite({
         address: housePlants,
         abi:  [
