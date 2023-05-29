@@ -5,19 +5,25 @@ import NextHead from 'next/head'
 import * as React from 'react'
 import { WagmiConfig } from 'wagmi'
 import { client } from '../wagmi'
+import { MintNFT } from '../components/mintNFT'
+
 
 function App({ Component, pageProps }: AppProps) {
+
 	const [mounted, setMounted] = React.useState(false)
 	React.useEffect(() => setMounted(true), [])
+
 	return (
 		<WagmiConfig client={client}>
 			<ConnectKitProvider theme="minimal">
 				<NextHead>
 					<title>Caisson</title>
 				</NextHead>
-
-				{mounted && <Component {...pageProps} />}
+	
+				{mounted ? <Component {...pageProps} /> : <div />}
+				<MintNFT />
 			</ConnectKitProvider>
+			
 		</WagmiConfig>
 	)
 }
