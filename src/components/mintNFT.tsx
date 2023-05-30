@@ -10,15 +10,13 @@ const priceToMint = '20000000000000000'
 
 export function MintNFT() {
     const {address, isConnected } = useAccount();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(BigNumber.from(1)); // quantity is a BigNumber from the start
 
-const totalMintPrice = useMemo(() => {
-    if (!priceToMint) {
-      return "loading...";
-    }
-    const totalMintPriceInt = BigNumber.from(priceToMint).mul(quantity);
-    return ethers.utils.formatEther(totalMintPriceInt);
-  }, [priceToMint, quantity]);
+        // onChange handler for the input
+      const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newQuantity = BigNumber.from(e.target.value);
+      setQuantity(newQuantity);
+      };
 
     const { config: prepareConfig, error: prepareError} = usePrepareContractWrite({
         address: housePlants,
@@ -55,8 +53,8 @@ const totalMintPrice = useMemo(() => {
          <div>Mint Amount :</div>
               <input
                 type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
+                value={quantity.toString()}
+                onChange={handleQuantityChange}
                 name=""
               />
         <button

@@ -19,11 +19,11 @@ function App({ Component, pageProps }: AppProps) {
 				<NextHead>
 					<title>Caisson</title>
 				</NextHead>
-	
+				
 				{mounted ? <Component {...pageProps} /> : <div />}
 				<MintNFT />
 			</ConnectKitProvider>
-			
+		
 		</WagmiConfig>
 	)
 }
