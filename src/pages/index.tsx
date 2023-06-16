@@ -1,11 +1,14 @@
-import { Header } from '../components'
+import { Header } from "../components";
+import { MintFeltProjects } from "../components/mintFeltProjects";
+import { MintNFT } from "../components/mintNFT";
 
 function Page() {
-	return (
-		<>
-			<Header />
-		</>
-	)
+  return (
+    <>
+      <Header />
+      <MintFeltProjects />
+    </>
+  );
 }
 
-export default Page
+export default Page;
