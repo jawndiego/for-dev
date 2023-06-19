@@ -64,13 +64,13 @@ export function MintZORANFT({ address }: { address: Address }) {
       zoraFee[1],
       salesConfig?.publicSalePrice + zoraFee[1],
     ];
-  }, [mintData, zoraFee]);
+  }, [mintData, zoraFee, salesConfig]);
 
   const { config: preparedZoraDropPurchaseConfig, error: prepareError } =
     usePrepareZoraDropPurchase({
       enabled: !!salesConfig,
-      args: [BigInt(quantity)],
-      value: (mintPriceWithFee || BigInt(0)) * BigInt(quantity),
+      args: [quantity],
+      value: mintPriceWithFee * quantity,
     });
 
   const {
