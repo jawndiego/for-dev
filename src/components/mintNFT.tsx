@@ -115,7 +115,9 @@ export function MintNFT() {
             name=""
             style={inputStyle} // Apply inline style here
           />
-          <div style={divStyle}>Price: {formatEther(priceToMint)} </div>
+          <div style={divStyle}>
+            Price: {housePlantsPrice ? formatEther(housePlantsPrice) : "..."}{" "}
+          </div>
           <div style={divStyle}>
             Number Minted: {housePlantsTotalSupply?.toString() || "..."}
           </div>

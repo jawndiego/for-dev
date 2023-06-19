@@ -21,6 +21,12 @@ export default defineConfig({
             [mainnet.id]: "0x32887799ba0d479fa9495c4f1dd28178b37068e5",
           },
         },
+        {
+          name: "zoraDrop",
+          address: {
+            [mainnet.id]: "0x419074d73cf0852e46b8531b430b1230c348c291",
+          },
+        },
       ],
     }),
     react(),
