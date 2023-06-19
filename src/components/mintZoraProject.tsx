@@ -32,11 +32,11 @@ export function MintZORANFT({ address }: { address: Address }) {
     padding: '10px',
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
     backgroundImage: 'linear-gradient(to bottom, #f8f8f8, #e1e1e1)',
-    background: "black",
+    background: "cornflowerblue",
     color: "white",
     outline: 'none',
     transition: 'box-shadow 0.3s ease-in-out',
-    width: '150px',
+    width: '200px',
     height: '100px',
     fontSize: '2em',    
   };
@@ -171,9 +171,6 @@ export function MintZORANFT({ address }: { address: Address }) {
         <div style={divStyle}>
         {salesConfig?.totalMinted.toString() || "..."} / {salesConfig?.maxSupply.toString() || "..."} Minted
         </div>
-        <div style={divStyle}>
-          {salesConfig?.maxSalePurchasePerAddress.toString() || "..."}  Max Mint Limit Per Transaction
-        </div>
         {mintError && (
           <div style={soldOutStyle}>
             {(mintError as any)?.shortMessage || mintError.toString()}
@@ -184,15 +181,18 @@ export function MintZORANFT({ address }: { address: Address }) {
             {(prepareError as any)?.shortMessage || prepareError.message}
           </div>
         )}
-        <button style={mintStyle}
+        
+        {isConnected && <button style={mintStyle}
           disabled={!!(mintError || mintIsLoading)}
           onClick={() => preparedZoraDropPurchaseWrite?.()}
           className={`border-[2px] border-black px-3 py-1 rounded hover:bg-black hover:text-white ${
             !isConnected ? "cursor-not-allowed" : ""
           }`}
-        >
-          {isConnected ? `Mint` : `Connect wallet above`}
+        
+        > Mint
+
         </button>
+        }
         <p></p>
           <p></p>
           <a style={divStyle} href="https://twitter.com/feltzine">FELT ZINE TWITTER </a>
