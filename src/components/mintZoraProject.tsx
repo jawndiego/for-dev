@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useContractWrite, useContractReads } from "wagmi";
+import { useContractWrite, useContractReads, usePrepareContractWrite } from "wagmi";
 import { useAccount } from "wagmi";
 import { usePrepareZoraDropPurchase, zoraDropABI } from "../wagmi/generated";
 import { Address, formatEther } from "viem";
@@ -67,7 +67,10 @@ export function MintZORANFT({ address }: { address: Address }) {
   }, [mintData, zoraFee, salesConfig]);
 
   const { config: preparedZoraDropPurchaseConfig, error: prepareError } =
-    usePrepareZoraDropPurchase({
+    usePrepareContractWrite({
+      address,
+      functionName: 'purchase',
+      abi: zoraDropABI,
       enabled: !!salesConfig,
       args: [quantity],
       value: mintPriceWithFee * quantity,
