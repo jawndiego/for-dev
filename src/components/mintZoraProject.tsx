@@ -1,5 +1,9 @@
 import { useMemo, useState } from "react";
-import { useContractWrite, useContractReads, usePrepareContractWrite } from "wagmi";
+import {
+  useContractWrite,
+  useContractReads,
+  usePrepareContractWrite,
+} from "wagmi";
 import { useAccount } from "wagmi";
 import { usePrepareZoraDropPurchase, zoraDropABI } from "../wagmi/generated";
 import { Address, formatEther } from "viem";
@@ -69,7 +73,7 @@ export function MintZORANFT({ address }: { address: Address }) {
   const { config: preparedZoraDropPurchaseConfig, error: prepareError } =
     usePrepareContractWrite({
       address,
-      functionName: 'purchase',
+      functionName: "purchase",
       abi: zoraDropABI,
       enabled: !!salesConfig,
       args: [quantity],
@@ -119,7 +123,11 @@ export function MintZORANFT({ address }: { address: Address }) {
         <div style={divStyle}>
           Max Can be Minted: {salesConfig?.maxSupply.toString() || "..."}
         </div>
-        {mintError && <div style={divStyle}>{mintError.toString()}</div>}
+        {mintError && (
+          <div style={divStyle}>
+            {(mintError as any)?.shortMessage || mintError.toString()}
+          </div>
+        )}
         {prepareError && (
           <div style={divStyle}>
             {(prepareError as any)?.shortMessage || prepareError.message}
