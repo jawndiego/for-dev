@@ -119,7 +119,7 @@ export function MintZORANFT({ address }: { address: Address }) {
         {mintError && <div style={divStyle}>{mintError.toString()}</div>}
         {prepareError && (
           <div style={divStyle}>
-            {prepareError?.shortMessage || prepareError.message}
+            {(prepareError as any)?.shortMessage || prepareError.message}
           </div>
         )}
         <button
